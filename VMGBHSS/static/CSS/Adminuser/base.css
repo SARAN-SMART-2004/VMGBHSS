@@ -1,0 +1,119 @@
+
+body {
+    background-color: #ffffff; /* white color background */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Glassmorphism style */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Navigation bar style */
+nav {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #555;
+}
+        /* Main content area */
+.main {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+/* Student details table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Form styling */
+.form-container {
+    margin-top: 20px;
+}
+
+.form-container input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.form-container input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-container input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.footer-content {
+text-align: center;
+}
+
+.footer h3 {
+color: #333;
+font-size: 24px;
+margin-bottom: 10px;
+}
+
+.footer p {
+color: #555;
+font-size: 16px;
+margin: 5px 0;
+}
+main .navbar {
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+   
+}

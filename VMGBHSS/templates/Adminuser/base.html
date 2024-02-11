@@ -1,17 +1,136 @@
 <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Webpage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'CSS/Adminuser/base.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/Adminuser/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/Adminuser/home.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/Adminuser/footer.css' %}">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <p>base page</p>
-        
-        <script src="" async defer></script>
-    </body>
+</head>
+<body>
+    <nav class="glassmorphism">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="contact">Contacts Us</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Labs</a></li>
+            <li><a href="#">Academic</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  More
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li><a href="login">Login</a></li>
+              {% comment %} <li> <button type="button" class="btn btn-success"> Login </button></li>
+              <li> <button type="button" class="btn btn-danger"> Logout </button></li> {% endcomment %}
+        </ul>
+    </nav>
+
+    <div class="glassmorphism">
+         <!-- Main Content Area -->
+         {% block content %}
+
+         {% endblock %}
+
+    </div>
+     <div class="glassmorphism">
+
+
+
+
+    <footer class="footer_area section_padding_130_0">
+<div class="container">
+<div class="row">
+
+<div class="col-12 col-sm-6 col-lg-4">
+<div class="single-footer-widget section_padding_0_130">
+
+<div class="footer-logo mb-3"></div>
+<p>V.M. Government Boys Higher Secondary School, Thenkarai, Periyakulam 625601.</p>
+
+
+
+<div class="footer_social_area"><a href="#" data-toggle="tooltip" data-placement="top" title data-original-title="Facebook"><i class="fa fa-facebook"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title data-original-title="Pinterest"><i class="fa fa-pinterest"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title data-original-title="Skype"><i class="fa fa-skype"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title data-original-title="Twitter"><i class="fa fa-twitter"></i></a></div>
+</div>
+</div>
+
+<div class="col-12 col-sm-6 col-lg">
+<div class="single-footer-widget section_padding_0_130">
+
+<h5 class="widget-title">About</h5>
+
+<div class="footer_menu">
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Corporate Sale</a></li>
+<li><a href="#">Terms &amp; Policy</a></li>
+<li><a href="#">Community</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="col-12 col-sm-6 col-lg">
+<div class="single-footer-widget section_padding_0_130">
+
+<h5 class="widget-title">Support</h5>
+
+<div class="footer_menu">
+<ul>
+<li><a href="#">Help</a></li>
+<li><a href="#">Support</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Help &amp; Support</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="col-12 col-sm-6 col-lg">
+<div class="single-footer-widget section_padding_0_130">
+
+<h5 class="widget-title">Contact</h5>
+
+<div class="footer_menu">
+<ul>
+<li><a href="#">Call Centre</a></li>
+<li><a href="#">Email Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Help Center</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+     <!-- SCRIPTS -->
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/owl.carousel.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script>
+     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
