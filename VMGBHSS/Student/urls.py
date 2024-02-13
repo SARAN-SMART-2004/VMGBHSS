@@ -4,8 +4,8 @@ from . import views
 
 
 urlpatterns = [
-   
+    path('StudentSignup',views.signup,name='signup'),
     path('studentlogin',views.login,name='login'),
     path('StudentDashboard',views.StudentDashboard,name='StudentDashboard'),
-    path('StudentProfile',views.StudentProfile,name='StudentProfile'),
+    path('StudentProfile/<int:student_id>/',views.StudentProfile,name='StudentProfile'),
 ]

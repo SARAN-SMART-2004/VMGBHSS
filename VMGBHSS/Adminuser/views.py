@@ -35,8 +35,8 @@ def login(request):
         user = User.objects.filter(username=username, password=password).first()
         if user:
             # Redirect to some page on successful login
-            return redirect('home')
+            return redirect('AdminPanel')
         else:
-            # Show an error message
+            # SAdminPanel how an error message
             return render(request, 'Adminuser/login.html', {'error': 'Invalid credentials'})
     return render(request, 'Adminuser/login.html')

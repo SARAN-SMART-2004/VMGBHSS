@@ -1,4 +1,5 @@
 {% extends "Adminuser/base.html" %}
+{% block title %}Student Dashboard{% endblock %}
 {%block content %}
 <!-- Student Dashboard -->
 {% load static %}
@@ -9,11 +10,14 @@
    <nav class="navbar navbar-light bg-light justify-content-between">
        <a class="navbar-brand">Student Details</a>
        <form class="form-inline">
+        <button class="btn btn-success" type="button">Add New</button>
+        &nbsp;
          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
        </form>
      </nav>
    <table>
+    
        <tr>
            <th>ID</th>
            <th>Name</th>
@@ -22,18 +26,20 @@
            <th>Actions</th>
        </tr>
        <!-- Sample data, you can replace this with actual data -->
+       {% for student in students %}
        <tr>
-           <td>1</td>
-           <td>John Doe</td>
-           <td>18</td>
-           <td>12</td>
+           <td>{{student.admission_no}}</td>
+           <td>{{student.name}}</td>
+           <td>{{student.section}}</td>
+           <td>{{student.class_name}}</td>
            <td>
-               <button type="button" class="btn btn-primary">Edit</button>
-               <button type="button" class="btn btn-danger">Delete</button>
-               <button type="button" class="btn btn-info">View</button>
+               <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ student.id }}')">Edit</button>
+               <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ student.id }}')">Delete</button>
+               <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ student.id }}')">View</button>
            </td>
        </tr>
-       <tr>
+       {% endfor %}
+       {% comment %} <tr>
            <td>2</td>
            <td>Jane Smith</td>
            <td>17</td>
@@ -43,8 +49,10 @@
                <button type="button" class="btn btn-danger">Delete</button>
                <button type="button" class="btn btn-info">View</button>
            </td>
-       </tr>
+       </tr> {% endcomment %}
    </table>
 </div>
 </div>
 {% endblock %}
+
+
