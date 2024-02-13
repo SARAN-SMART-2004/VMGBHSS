@@ -1,0 +1,49 @@
+<!-- upload.html -->
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required>
+    <br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <br>
+    <label for="qualification">Qualification:</label>
+    <input type="text" id="qualification" name="qualification">
+    <br>
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary">
+    <br>
+    <label for="experience">Experience:</label>
+    <input type="text" id="experience" name="experience">
+    <br>
+    <label for="designation">Designation:</label>
+    <input type="text" id="designation" name="designation">
+    <br>
+    <label for="address">Address:</label>
+    <textarea id="address" name="address"></textarea>
+    <br>
+    <label for="join_date">Join Date:</label>
+    <input type="date" id="join_date" name="join_date">
+    <br>
+    <label for="nationality">Nationality:</label>
+    <input type="text" id="nationality" name="nationality">
+    <br>
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+    </select>
+    <br>
+    <label for="image">Upload Image:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+    <br>
+    <button type="submit">Submit</button>
+</form>

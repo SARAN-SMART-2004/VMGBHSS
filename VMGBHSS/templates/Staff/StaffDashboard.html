@@ -1,51 +1,58 @@
+<!-- staff_dashboard.html -->
+
 {% extends "Adminuser/base.html" %}
 {% block title %}Staff Dashboard{% endblock %}
-{%block content %}
-<!-- Staff Dashboard -->
-{% load static %}
+{% block content %}
 <div class="glassmorphism">
     <!-- Main Content Area -->
-<!-- Main content area -->
-<div class="main">
-   <nav class="navbar navbar-light bg-light justify-content-between">
-       <a class="navbar-brand">Staff Details</a>
-       <form class="form-inline">
-         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-       </form>
-     </nav>
-   <table>
-       <tr>
-           <th>ID</th>
-           <th>Name</th>
-           <th>Age</th>
-           <th>Salary</th>
-           <th>Course</th>
-       </tr>
-       <!-- Sample data, you can replace this with actual data -->
-       <tr>
-           <td>1</td>
-           <td>John Doe</td>
-           <td>18</td>
-           <td>12</td>
-           <td>
-               <button type="button" class="btn btn-primary">Edit</button>
-               <button type="button" class="btn btn-danger">Delete</button>
-               <button type="button" class="btn btn-info">View</button>
-           </td>
-       </tr>
-       <tr>
-           <td>2</td>
-           <td>Jane Smith</td>
-           <td>17</td>
-           <td>11</td>
-           <td>
-               <button type="button" class="btn btn-primary">Edit</button>
-               <button type="button" class="btn btn-danger">Delete</button>
-               <button type="button" class="btn btn-info">View</button>
-           </td>
-       </tr>
-   </table>
+    <div class="main">
+       <nav class="navbar navbar-light bg-light justify-content-between">
+           <a class="navbar-brand">Staff Details</a>
+           <form class="form-inline">
+             <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+             <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStaff()">Search</button>
+           </form>
+         </nav>
+       <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for staff in staffs %}
+        <tr class="staff-row">
+            <td>{{ staff.id }}</td>
+            <td>{{ staff.name }}</td>
+            <td>{{ staff.phone }}</td>
+            <td>{{ staff.email }}</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ staff.id }}')">Edit</button>
+                <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ staff.id }}')">Delete</button>
+                <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ staff.id }}')">View</button>
+            </td>
+        </tr>
+        {% endfor %}
+       </table>
+    </div>
 </div>
-</div>
+<script>
+    function redirectToEditPage(staffId) {
+        // Redirect to the edit page with the student ID
+        window.location.href = '/StaffProfile/' + staffId;
+    }
+  
+    function redirectToDeletePage(studentId) {
+        // Redirect to the delete page with the student ID
+        window.location.href = '/delete/' + staffId;
+    }
+  
+    function redirectToViewPage(staffId) {
+        // Redirect to the view page with the student ID
+        window.location.href = '/StaffProfile/' + staffId;
+    }
+  </script>
 {% endblock %}
+
+

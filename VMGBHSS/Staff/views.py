@@ -1,13 +1,28 @@
-from django.shortcuts import render, redirect
-from .forms import SignUpForm
-from .models import StaffUser
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import SignUpForm,StaffDetailsForm
+from .models import StaffUser,StaffDetails
 
 
 def StaffDashboard(request):
-    return render(request,'Staff/StaffDashboard.html')
-def StaffProfile(request):
-    return render(request,'Staff/StaffProfile.html')
+    staffs = StaffDetails.objects.all()
+    #Pass the data
+    return render(request,'Staff/StaffDashboard.html', {'staffs': staffs})
 
+def StaffProfile(request, staff_id):
+    #  # Retrieve student details from the database
+    staff = get_object_or_404(StaffDetails, pk=staff_id)
+    #Pass the data
+    return render(request,'Staff/StaffProfile.html', {'staff': staff})
+
+def StaffUpload(request):
+    if request.method == 'POST':
+        form = StaffDetailsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to a success page after successful submission
+    else:
+        form = StaffDetailsForm()
+    return render(request, 'Staff/StaffUpload.html', {'form': form})
 
 def signup(request):
     if request.method == 'POST':
