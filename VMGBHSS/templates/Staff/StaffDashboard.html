@@ -8,6 +8,7 @@
     <div class="main">
        <nav class="navbar navbar-light bg-light justify-content-between">
            <a class="navbar-brand">Staff Details</a>
+           <button type="button" class="btn btn-info" onclick="redirectToAddPage()">ADD</button>
            <form class="form-inline">
              <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
              <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStaff()">Search</button>
@@ -40,19 +41,24 @@
 <script>
     function redirectToEditPage(staffId) {
         // Redirect to the edit page with the student ID
-        window.location.href = '/StaffProfile/' + staffId;
+        window.location.href = '/StaffProfileUpdate/' + staffId+'/';
     }
   
-    function redirectToDeletePage(studentId) {
+    function redirectToDeletePage(staffId) {
         // Redirect to the delete page with the student ID
-        window.location.href = '/delete/' + staffId;
+        window.location.href = '/delete/'+staffId+'/';
     }
   
     function redirectToViewPage(staffId) {
         // Redirect to the view page with the student ID
-        window.location.href = '/StaffProfile/' + staffId;
+        window.location.href = '/StaffProfile/'+ staffId+'/';
+    }
+    function redirectToAddPage(staffId) {
+        // Redirect to the view page with the student ID
+        window.location.href = '/StaffUpload/';
     }
   </script>
+
 {% endblock %}
 
 

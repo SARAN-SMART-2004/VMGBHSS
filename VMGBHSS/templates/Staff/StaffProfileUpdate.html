@@ -93,14 +93,14 @@ body{
 {% comment %} <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> {% endcomment %}
 <!-- Display the image -->
 {% if staff.image %}
-<img src="{{ staff.image.url }}" alt="{{ staff.name }}"  class="rounded-circle" width="150">
+<img src="{{ staff.image.url }}" class="rounded-circle" width="150">
 {% endif %}
-<form method="POST" enctype="multipart/form-data">
+<form action='/StaffProfileUpdate/{{staff.id}}/' method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
 <div class="mt-3">
 <h4>{{ staff.name }}</h4>
-<input type="file" id="image" name="image" accept="image/*">
+<input type="file" value="{{staff.image}}" name="image" accept="image/*">
 
 
 {% if form.errors %}
@@ -151,10 +151,10 @@ body{
 <div class="card-body">
 <div class="row">
 <div class="col-sm-3">
-<h6 class="mb-0">Full Name</h6>
+<h6 class="mb-0">Name</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-    <input type="text" class="text-secondary" name={{ staff.name }} placeholder={{staff.name}}>
+    <input type="text" class="text-secondary" value="{{ staff.name}}" name="name">
 </div>
 </div>
 <hr>
@@ -163,7 +163,7 @@ body{
 <h6 class="mb-0">Email</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-    <input type="email" class="text-secondary" name={{ staff.email }} placeholder={{staff.email}}>
+    <input type="email" class="text-secondary" value="{{ staff.email }}" name="email">
 </div>
 </div>
 <hr>
@@ -172,7 +172,7 @@ body{
     <h6 class="mb-0">Qualification </h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.qualification }} placeholder={{staff.qualification}}>
+        <input type="text" class="text-secondary" value="{{ staff.qualification }}" name="qualification">
     
     </div>
     </div>
@@ -182,7 +182,7 @@ body{
     <h6 class="mb-0">Salary</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.salary }} placeholder={{staff.salary}}>
+        <input type="text" class="text-secondary" value="{{ staff.salary }}" name="salary">
     </div>
     </div>
 <hr>
@@ -191,7 +191,7 @@ body{
     <h6 class="mb-0">Age</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.age }} placeholder={{staff.age}}>
+        <input type="text" class="text-secondary" value="{{ staff.age }}" name="age">
     </div>
     </div>
 <hr>
@@ -200,7 +200,7 @@ body{
     <h6 class="mb-0">Phone</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.phone }} placeholder={{staff.phone}}>
+        <input type="text" class="text-secondary" value="{{ staff.phone }}" name="phone">
     </div>
     </div>
 <hr>
@@ -209,7 +209,7 @@ body{
     <h6 class="mb-0">DOB</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.dob }} placeholder={{staff.dob}}>
+        <input type="text" class="text-secondary" value="{{ staff.dob }}" name="dob">
     </div>
     </div>
 <hr>
@@ -218,7 +218,7 @@ body{
 <h6 class="mb-0">Designation</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-    <input type="text" class="text-secondary" name={{ staff.designation }} placeholder={{staff.designation}}>
+    <input type="text" class="text-secondary" value="{{ staff.designation }}" name="designation">
 </div>
 </div>
 <hr>
@@ -227,7 +227,7 @@ body{
 <h6 class="mb-0">Experience</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-    <input type="text" class="text-secondary" name={{ staff.experience }} placeholder={{staff.experience}}>
+    <input type="text" class="text-secondary" value="{{ staff.experience }}" name="experience">
 </div>
 </div>
 <hr>
@@ -236,7 +236,7 @@ body{
 <h6 class="mb-0">Address</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-    <input type="text" class="text-secondary" name={{ staff.address }} placeholder={{staff.address}}>
+    <input type="text" class="text-secondary" value="{{ staff.address }}" name="address">
 </div>
 </div>
 <hr>
@@ -246,7 +246,7 @@ body{
     <h6 class="mb-0"> Join Data</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-         <input type="date" class="text-secondary" name={{ staff.join_data }} placeholder={{staff.join_data}}>
+         <input type="date" class="text-secondary" value="{{ staff.join_data }}" name="join_data">
     </div>
     </div>
 <hr>
@@ -255,7 +255,7 @@ body{
     <h6 class="mb-0">Nationality</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.nationality }} placeholder={{staff.nationality}}>
+        <input type="text" class="text-secondary" value="{{ staff.nationality }}" name="nationality">
     </div>
     </div>
 <hr>
@@ -265,7 +265,7 @@ body{
     <h6 class="mb-0">Gender</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" name={{ staff.gender}} placeholder={{staff.gender}}>
+        <input type="text" class="text-secondary" value="{{ staff.gender}}" name="gender">
     </div>
     </div>
 <hr>
@@ -276,7 +276,9 @@ body{
 </form>
 </div>
 </div>
-
+<p>{{ form.errors }}
+    {{ form.name.errors }}
+    {{ form.name }}</p>
 {% comment %} </div>
 <div class="row gutters-sm">
 <div class="col-sm-6 mb-3">
