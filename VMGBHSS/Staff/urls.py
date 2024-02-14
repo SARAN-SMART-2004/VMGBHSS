@@ -11,6 +11,8 @@ urlpatterns = [
     path('StaffDashboard',views.StaffDashboard,name='StaffDashboard'),
     path('StaffUpload/', views.StaffUpload, name='StaffUpload'),
     path('StaffProfile/<int:staff_id>/',views.StaffProfile,name='StaffProfile'),
+    
+    path('StaffProfileUpdate/<int:staff_id>/',views.StaffProfileUpdate,name='StaffProfileUpdate'),
 ]
 # Add static file serving for media files
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

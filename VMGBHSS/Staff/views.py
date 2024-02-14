@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from .forms import SignUpForm,StaffDetailsForm
 from .models import StaffUser,StaffDetails
 
@@ -13,6 +13,21 @@ def StaffProfile(request, staff_id):
     staff = get_object_or_404(StaffDetails, pk=staff_id)
     #Pass the data
     return render(request,'Staff/StaffProfile.html', {'staff': staff})
+
+def StaffProfileUpdate(request, staff_id):
+    staff = get_object_or_404(StaffDetails, pk=staff_id)
+    
+    if request.method == 'POST':
+        form = StaffDetailsForm(request.POST, request.FILES, instance=staff)
+       
+        if form.is_valid():
+            form.save()
+            # Redirect to the staff profile page after successful update
+            return redirect('StaffProfile', staff_id=staff_id)
+    else:
+        form = StaffDetailsForm(instance=staff)
+
+    return render(request, 'Staff/StaffProfileUpdate.html', {'form': form, 'staff': staff})
 
 def StaffUpload(request):
     if request.method == 'POST':
