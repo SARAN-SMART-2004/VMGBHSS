@@ -1,0 +1,129 @@
+{% extends "Adminuser/base.html" %}
+
+{% block title %}New Registration{% endblock %}
+{%block content %}
+<!-- FEATURE -->
+{% load static %}
+       <style>
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        textarea,
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        select {
+            height: 35px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">Name:</label>
+            <input type="text" id="id_name" name="name" maxlength="100" required>
+        </div>
+        <div>
+            <label for="id_dob">Date of Birth:</label>
+            <input type="date" id="id_dob" name="dob" required>
+        </div>
+        <div>
+            <label for="id_phone">Phone:</label>
+            <input type="text" id="id_phone" name="phone" maxlength="15" required>
+        </div>
+        <div>
+            <label for="id_class_name">Class Name:</label>
+            <input type="text" id="id_class_name" name="class_name" maxlength="20" required>
+        </div>
+        <div>
+            <label for="id_section">Section:</label>
+            <input type="text" id="id_section" name="section" maxlength="10" required>
+        </div>
+        <div>
+            <label for="id_blood_group">Blood Group:</label>
+            <input type="text" id="id_blood_group" name="blood_group" maxlength="5" required>
+        </div>
+        <div>
+            <label for="id_father_name">Father's Name:</label>
+            <input type="text" id="id_father_name" name="father_name" maxlength="100" required>
+        </div>
+        <div>
+            <label for="id_caste">Caste:</label>
+            <input type="text" id="id_caste" name="caste" maxlength="50" required>
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            <input type="email" id="id_email" name="email" required>
+        </div>
+        <div>
+            <label for="id_address">Address:</label>
+            <textarea id="id_address" name="address" required></textarea>
+        </div>
+        <div>
+            <label for="id_mother_name">Mother's Name:</label>
+            <input type="text" id="id_mother_name" name="mother_name" maxlength="100" required>
+        </div>
+        <div>
+            <label for="id_nationality">Nationality:</label>
+            <input type="text" id="id_nationality" name="nationality" maxlength="50" required>
+        </div>
+        <div>
+            <label for="id_first_language">First Language:</label>
+            <input type="text" id="id_first_language" name="first_language" maxlength="50" required>
+        </div>
+        <div>
+            <label for="id_medium_of_language">Medium of Language:</label>
+            <input type="text" id="id_medium_of_language" name="medium_of_language" maxlength="50" required>
+        </div>
+        <div>
+            <label for="id_emis_no">EMIS Number:</label>
+            <input type="text" id="id_emis_no" name="emis_no" maxlength="20" required>
+        </div>
+        <div>
+            <label for="id_admission_no">Admission Number:</label>
+            <input type="text" id="id_admission_no" name="admission_no" maxlength="20" required>
+        </div>
+        <div>
+            <label for="id_gender">Gender:</label>
+            <select id="id_gender" name="gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    
+
+    {% endblock %}

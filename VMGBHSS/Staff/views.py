@@ -33,7 +33,7 @@ def StaffProfileUpdate(request, id):
         nationality = request.POST['nationality']
         gender = request.POST['gender']
         image = request.POST['image']
-        print(request.POST)
+        
         
         staff.name= name
         staff.phone = phone
@@ -53,7 +53,7 @@ def StaffProfileUpdate(request, id):
         messages.success(request,"Updated Successfully")
             # Redirect to the staff profile page after successful update
         return redirect('StaffDashboard')
-        messages.success(request,"Updated Successfully")
+        
     else:
         messages.error(request, "Failed to update. Please check the form.")
         form = StaffDetailsForm(instance=staff)
@@ -66,7 +66,7 @@ def StaffUpload(request):
         if form.is_valid():
             form.save()
             return redirect('home')  # Redirect to a success page after successful submission
-    else:
+    else: 
         form = StaffDetailsForm()
     return render(request, 'Staff/StaffUpload.html', {'form': form})
 

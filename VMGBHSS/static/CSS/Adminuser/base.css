@@ -18,8 +18,7 @@ body {
     padding: 20px;
     margin: 20px;
     position: relative;
-    z-index: 2; /* Ensure the navbar is above other elements */
-   
+    
 }
 
 .dropdown-menu {

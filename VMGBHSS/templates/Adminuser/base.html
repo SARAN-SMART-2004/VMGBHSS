@@ -22,9 +22,9 @@
 <body>
     <nav class="glassmorphism">
         <ul>
-            <li><a href="home/">Home</a></li>
-            <li><a href="contact/">Contacts Us</a></li>
-            <li><a href="about/">About Us</a></li>
+            <li><a href="home">Home</a></li>
+            <li><a href="contact">Contacts Us</a></li>
+            <li><a href="about">About Us</a></li>
             <li><a href="#">Labs</a></li>
             <li><a href="#">Academic</a></li>
             
@@ -34,10 +34,10 @@
                 </a>
                 <div class="drop">
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#" onclick="routeToPage(event, 'StudentDashboard')">Student Dashboard</a>
+                  <a class="dropdown-item" href="#" onclick="routeToPage(event, 'StaffDashboard/')">Staff Dashboard</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#" onclick="routeToPage(event, 'AdminPanel/')">Admin Panel</a>
                 </div>
 
               </li>
@@ -129,11 +129,12 @@
 </footer>
 
      <!-- SCRIPTS -->
-     {% comment %} <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script> {% endcomment %}
+     <script>
+      function routeToPage(event, page) {
+          event.preventDefault(); // Prevent default behavior of link click
+          window.location.href = '/' + page; // Redirect to the desired page
+      }
+  </script>
      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 

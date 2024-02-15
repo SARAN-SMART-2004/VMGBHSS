@@ -31,29 +31,35 @@ background:#eee;
 <div class="panel-body">
 <div class="row">
 <div class="col-xs-6 col-md-6">
-<a href="StudentDashboard" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Students</a>
+<a href="#" onclick="routeToPage(event, 'StudentDashboard')" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Students</a>
 <a href="#" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br/>Result</a>
 <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br/>Attendance</a>
 <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-comment"></span> <br/>Feedback</a>
 </div>
 <div class="col-xs-6 col-md-6">
-<a href="StaffDashboard" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Staffs</a>
+<a href="#" onclick="routeToPage(event, 'StaffDashboard/')" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Staffs</a>
 <a href="#" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Notes</a>
 <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-picture"></span> <br/>Photos</a>
 <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Tags</a>
 </div>
 </div>
-<a href="home" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Website</a>
+<a href="#" onclick="routeToPage(event, 'home')" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Website</a>
 </div>
 </div>
 </div>
 </div>
 </div>
+<script>
+    function routeToPage(event, page) {
+        event.preventDefault(); // Prevent default behavior of link click
+        window.location.href = '/' + page; // Redirect to the desired page
+    }
+</script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript"> -->
 	                        
-    {% endblock %}
+ {% endblock %}
                         
                                         
 </script>
