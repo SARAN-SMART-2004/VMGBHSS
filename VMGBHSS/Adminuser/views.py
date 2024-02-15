@@ -40,3 +40,5 @@ def login(request):
             # SAdminPanel how an error message
             return render(request, 'Adminuser/login.html', {'error': 'Invalid credentials'})
     return render(request, 'Adminuser/login.html')
+def about(request):
+    return render(request,'Adminuser/about.html')

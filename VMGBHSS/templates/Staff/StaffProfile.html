@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-
-
-<title>staff Profile</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "Adminuser/base.html" %}
+{% block title %}Staff Profile{% endblock %}
+{% block content %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
-    {% comment %} /* Glassmorphism style */
-.glassmorphism {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 20px;
-    margin: 20px;
-} {% endcomment %}
 
-body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #e2e8f0;    
-}
 .main-body {
     padding: 15px;
 }
@@ -77,10 +54,9 @@ body{
 .shadow-none {
     box-shadow: none!important;
 }
+ </style>
 
-    </style>
-</head>
-<body>
+
 <div class="container">
 <div class="main-body">
 
@@ -261,79 +237,20 @@ body{
 </div>
 </div>
 </div>
-{% comment %} </div>
-<div class="row gutters-sm">
-<div class="col-sm-6 mb-3">
-<div class="card h-100">
-<div class="card-body">
-<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Current</i>Progress Status</h6>
-<small>English</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Tamil</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Maths</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Science</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Social</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-sm-6 mb-3">
-<div class="card h-100">
-<div class="card-body">
-<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">PublicExam (10)</i>Progress Status</h6>
-<small>English</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Tamil</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Maths</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Science</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<small>Social</small>
-<div class="progress mb-3" style="height: 5px">
-<div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-
-</div> {% endcomment %}
-
-    <script>
+<script>
         function redirectToEditPage(staffId) {
             // Redirect to the edit page with the student ID
             window.location.href = '/StaffProfileUpdate/' + staffId;
         }
 </script>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+</script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript">
+
 	
 
-</body>
-</html>
+ {% endblock %}

@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
+{% extends "Adminuser/base.html" %}
+
+{% block title %}New Registration{% endblock %}
+{%block content %}
+<!-- FEATURE -->
+{% load static %}
+       <style>
         form {
             max-width: 600px;
             margin: 20px auto;
@@ -99,5 +93,4 @@
         <br>
         <button type="submit">Submit</button>
     </form>
-</body>
-</html>
+    {% endblock %}
