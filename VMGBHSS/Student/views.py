@@ -96,5 +96,11 @@ def StudentUpload(request):
         form = StudentDetailsForm()
         redirect('home')
     return render(request, 'Student/StudentUpload.html', {'form': form})
+def delete(request,id):
+    Student=StudentDetails.objects.get(id=id)
+    Student.delete()
+    messages.error(request,"Delete Successfully")
+    return redirect("StudentDashboard")
+
 
         

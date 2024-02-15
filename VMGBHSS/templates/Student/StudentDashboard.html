@@ -10,7 +10,7 @@
    <nav class="navbar navbar-light bg-light justify-content-between">
        <a class="navbar-brand">Student Details</a>
        <form class="form-inline">
-        <button class="btn btn-success" type="button">Add New</button>
+        <button type="button" class="btn btn-info" onclick="redirectToAddPage()">Add New Student </button>
         &nbsp;
          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -56,17 +56,21 @@
 <script>
     function redirectToEditPage(studentId) {
         // Redirect to the edit page with the student ID
-        window.location.href = '/StudentProfile/' + studentId+'/';
+        window.location.href = '/StudentProfileUpdate/' + studentId+'/';
     }
   
     function redirectToDeletePage(studentId) {
         // Redirect to the delete page with the student ID
-        window.location.href = '/delete/' + studentId+'/';
+        window.location.href = '/StudentDelete/' + studentId+'/';
     }
   
     function redirectToViewPage(studentId) {
         // Redirect to the view page with the student ID
         window.location.href = '/StudentProfile/' + studentId+'/';
+    }
+    function redirectToAddPage(staffId) {
+        // Redirect to the view page with the student ID
+        window.location.href = '/StudentUpload';
     }
   </script>
 {% endblock %}

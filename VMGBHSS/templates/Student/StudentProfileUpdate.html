@@ -1,8 +1,8 @@
     {% extends "Adminuser/base.html" %}
-    {% block title %}Update Staff{% endblock %}
+    {% block title %}Update Student{% endblock %}
     {% block content %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
+ 
+    <style type="css">
         {% comment %} /* Glassmorphism style */
     .glassmorphism {
         background: rgba(255, 255, 255, 0.2);
@@ -81,15 +81,15 @@
     <div class="d-flex flex-column align-items-center text-center">
     {% comment %} <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> {% endcomment %}
     <!-- Display the image -->
-    {% if staff.image %}
-    <img src="{{ staff.image.url }}" class="rounded-circle" width="150">
+    {% if student.image %}
+    <img src="{{ student.image.url }}" class="rounded-circle" width="150">
     {% endif %}
-    <form action='/StaffProfileUpdate/{{staff.id}}/' method="POST" enctype="multipart/form-data">
+    <form action='/StudentProfileUpdate/{{student.id}}/' method="POST" >
         {% csrf_token %}
 
     <div class="mt-3">
-    <h4>{{ staff.name }}</h4>
-    <input type="file" value="{{staff.image}}" name="image" accept="image/*">
+    <h4>{{ student.name }}</h4>
+    <input type="file" value="{{student.image}}" name="image" accept="image/*">
 
 
     {% if form.errors %}
@@ -113,24 +113,24 @@
     <div class="card mt-3">
         <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Phone</h6>
-        <span class="text-secondary">{{ staff.phone }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Email</h6>
-        <span class="text-secondary">{{ staff.email }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Deignation</h6>
-        <span class="text-secondary">{{ staff.designation }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Salary</h6>
-        <span class="text-secondary">{{staff.salary}}</span>
+        <h6 class="mb-0">Class</h6>
+        <span class="text-secondary">{{ student.class_name }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
         <h6 class="mb-0">DOB</h6>
-        <span class="text-secondary">{{staff.dob}}</span>
+        <span class="text-secondary">{{ student.dob }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Section</h6>
+        <span class="text-secondary">{{ student.section }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Blood Group</h6>
+        <span class="text-secondary">{{student.blood_group}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Caste</h6>
+        <span class="text-secondary">{{student.caste}}</span>
         </li>
         </ul>
         </div>
@@ -143,7 +143,71 @@
     <h6 class="mb-0">Name</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" value="{{ staff.name}}" name="name">
+        <input type="text" class="text-secondary" value="{{ student.name}}" name="name">
+    </div>
+    </div>
+    <hr>
+    <div class="row">
+    <div class="col-sm-3">
+    <h6 class="mb-0">DOB</h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <input type="text" class="text-secondary" value="{{ student.dob }}" name="dob">
+    </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Phone </h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.phone }}" name="phone">
+        
+        </div>
+        </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Class</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.class_name }}" name="class_name">
+        </div>
+        </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Section</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.section }}" name="section">
+        </div>
+        </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Blood Group</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.blood_group }}" name="blood_group">
+        </div>
+        </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Father Name</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.father_name }}" name="father_name">
+        </div>
+        </div>
+    <hr>
+    <div class="row">
+    <div class="col-sm-3">
+    <h6 class="mb-0">Caste</h6>
+    </div>
+    <div class="col-sm-9 text-secondary">
+        <input type="text" class="text-secondary" value="{{ student.caste }}" name="caste">
     </div>
     </div>
     <hr>
@@ -152,71 +216,7 @@
     <h6 class="mb-0">Email</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="email" class="text-secondary" value="{{ staff.email }}" name="email">
-    </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Qualification </h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.qualification }}" name="qualification">
-        
-        </div>
-        </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Salary</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.salary }}" name="salary">
-        </div>
-        </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Age</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.age }}" name="age">
-        </div>
-        </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">Phone</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.phone }}" name="phone">
-        </div>
-        </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-3">
-        <h6 class="mb-0">DOB</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.dob }}" name="dob">
-        </div>
-        </div>
-    <hr>
-    <div class="row">
-    <div class="col-sm-3">
-    <h6 class="mb-0">Designation</h6>
-    </div>
-    <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" value="{{ staff.designation }}" name="designation">
-    </div>
-    </div>
-    <hr>
-    <div class="row">
-    <div class="col-sm-3">
-    <h6 class="mb-0">Experience</h6>
-    </div>
-    <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" value="{{ staff.experience }}" name="experience">
+        <input type="email" class="text-secondary" value="{{ student.email }}" name="email">
     </div>
     </div>
     <hr>
@@ -225,17 +225,17 @@
     <h6 class="mb-0">Address</h6>
     </div>
     <div class="col-sm-9 text-secondary">
-        <input type="text" class="text-secondary" value="{{ staff.address }}" name="address">
+        <input type="text" class="text-secondary" value="{{ student.address }}" name="address">
     </div>
     </div>
     <hr>
 
     <div class="row">
         <div class="col-sm-3">
-        <h6 class="mb-0"> Join Data</h6>
+        <h6 class="mb-0"> Mother Name</h6>
         </div>
         <div class="col-sm-9 text-secondary">
-            <input type="date" class="text-secondary" value="{{ staff.join_data }}" name="join_data">
+            <input type="text" class="text-secondary" value="{{ student.mother_name }}" name="mother_name">
         </div>
         </div>
     <hr>
@@ -244,7 +244,7 @@
         <h6 class="mb-0">Nationality</h6>
         </div>
         <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.nationality }}" name="nationality">
+            <input type="text" class="text-secondary" value="{{ student.nationality }}" name="nationality">
         </div>
         </div>
     <hr>
@@ -254,7 +254,48 @@
         <h6 class="mb-0">Gender</h6>
         </div>
         <div class="col-sm-9 text-secondary">
-            <input type="text" class="text-secondary" value="{{ staff.gender}}" name="gender">
+            <input type="text" class="text-secondary" value="{{ student.gender}}" name="gender">
+        </div>
+        </div>
+    <hr>
+
+    
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">First Language</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.first_language}}" name="first_language">
+        </div>
+        </div>
+    <hr>
+    
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Medium of Language</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.medium_of_language}}" name="medium_of_language">
+        </div>
+        </div>
+    <hr>
+    
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Emis No</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.emis_no}}" name="emis_no">
+        </div>
+        </div>
+    <hr>
+    
+    <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">Admission No</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <input type="text" class="text-secondary" value="{{ student.admission_no}}" name="admission_no">
         </div>
         </div>
     <hr>
@@ -332,16 +373,13 @@
     </div>
     </div>
     </div> {% endcomment %}
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-        
-    </script>
 
         <script>
-            function redirectToProfilePage(staffId) {
+            function redirectToProfilePage(studentId) {
                 // Redirect to the edit page with the student ID
-                window.location.href = '/StaffProfile/' + staffId;
+                window.location.href = '/studentProfile/' + studentId+'/';
             }
     </script>
 

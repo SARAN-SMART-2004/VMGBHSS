@@ -10,4 +10,5 @@ urlpatterns = [
     path('StudentUpload', views.StudentUpload, name='StudentUpload'),
     path('StudentProfile/<int:student_id>/',views.StudentProfile,name='StudentProfile'),
     path('StudentProfileUpdate/<int:id>/',views.StudentProfileUpdate,name='StudentProfileUpdate'),
+    path('StudentDelete/<int:id>/',views.delete,name='StudentDelete'),
 ]
