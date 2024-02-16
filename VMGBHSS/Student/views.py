@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignUpForm,StudentDetailsForm
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import StudentUser,StudentDetails
 
 def signup(request):
@@ -31,7 +32,17 @@ def StudentDashboard(request):
      #  # Retrieve student details from the database
     students = StudentDetails.objects.all()
     #Pass the data
-    
+      # Paginate the queryset
+    paginator = Paginator(students, 10)  # Show 10 students per page
+    page_number = request.GET.get('page')
+    try:
+        students = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        students = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        students = paginator.page(paginator.num_pages)
     return render(request,'Student/StudentDashboard.html', {'students': students})
 def StudentProfile(request, student_id):
     #  # Retrieve student details from the database

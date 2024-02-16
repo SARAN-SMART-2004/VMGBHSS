@@ -1,96 +1,96 @@
 {% extends "Adminuser/base.html" %}
 
 {% block title %}New Registration{% endblock %}
-{%block content %}
+
+{% block content %}
 <!-- FEATURE -->
 {% load static %}
-       <style>
-        form {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="date"],
-        input[type="email"],
-        textarea,
-        select,
-        button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        select {
-            height: 35px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <br>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone">
-        <br>
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob">
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <br>
-        <label for="qualification">Qualification:</label>
-        <input type="text" id="qualification" name="qualification">
-        <br>
-        <label for="salary">Salary:</label>
-        <input type="text" id="salary" name="salary">
-        <br>
-        <label for="experience">Experience:</label>
-        <input type="text" id="experience" name="experience">
-        <br>
-        <label for="designation">Designation:</label>
-        <input type="text" id="designation" name="designation">
-        <br>
-        <label for="address">Address:</label>
-        <textarea id="address" name="address"></textarea>
-        <br>
-        <label for="join_date">Join Date:</label>
-        <input type="date" id="join_date" name="join_date">
-        <br>
-        <label for="nationality">Nationality:</label>
-        <input type="text" id="nationality" name="nationality">
-        <br>
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-            <option value="O">Other</option>
-        </select>
-        <br>
-        <label for="image">Upload Image:</label>
-        <input type="file" id="image" name="image" accept="image/*">
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-    {% endblock %}
+<style>
+    form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    textarea,
+    select,
+    button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    select {
+        height: 35px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone">
+    <br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <br>
+    <label for="qualification">Qualification:</label>
+    <input type="text" id="qualification" name="qualification">
+    <br>
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary">
+    <br>
+    <label for="experience">Experience:</label>
+    <input type="text" id="experience" name="experience">
+    <br>
+    <label for="designation">Designation:</label>
+    <input type="text" id="designation" name="designation">
+    <br>
+    <label for="address">Address:</label>
+    <textarea id="address" name="address"></textarea>
+    <br>
+    <label for="join_date">Join Date:</label>
+    <input type="date" id="join_date" name="join_date">
+    <br>
+    <label for="nationality">Nationality:</label>
+    <input type="text" id="nationality" name="nationality">
+    <br>
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+    </select>
+    <br>
+    <label for="image">Upload Image:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

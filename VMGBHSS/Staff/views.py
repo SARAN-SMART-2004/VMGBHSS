@@ -2,11 +2,23 @@ from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from .forms import SignUpForm,StaffDetailsForm
 from .models import StaffUser,StaffDetails
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def StaffDashboard(request):
     staffs = StaffDetails.objects.all()
     #Pass the data
+       # Paginate the queryset
+    paginator = Paginator(staffs, 10)  # Show 10 students per page
+    page_number = request.GET.get('page')
+    try:
+        staffs = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        staffs = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        staffs = paginator.page(paginator.num_pages)
     return render(request,'Staff/StaffDashboard.html', {'staffs': staffs})
 
 def StaffProfile(request, staff_id):

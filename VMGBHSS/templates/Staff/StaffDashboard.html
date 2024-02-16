@@ -1,5 +1,4 @@
 <!-- staff_dashboard.html -->
-
 {% extends "Adminuser/base.html" %}
 {% block title %}Staff Dashboard{% endblock %}
 {% block content %}
@@ -8,9 +7,10 @@
     <div class="main">
        <nav class="navbar navbar-light bg-light justify-content-between">
            <a class="navbar-brand">Staff Details</a>
-           <button type="button" class="btn btn-info" onclick="redirectToAddPage()">ADD</button>
+           <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">ADD</button>
+           &nbsp;
            <form class="form-inline">
-             <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+             <input id="searchInput" class="form-control mr-sm-2" type="search"  placeholder="Search Name" aria-label="Search">
              <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStaff()">Search</button>
            </form>
          </nav>
@@ -36,29 +36,53 @@
         </tr>
         {% endfor %}
        </table>
+      
     </div>
 </div>
+
+ <!-- Pagination links -->
+ <div class="pagination">
+    {% if staffs.has_previous %}
+        <a href="?page={{ staffs.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ staffs.number }} of {{ staffs.paginator.num_pages }}</span>
+
+    {% if staffs.has_next %}
+        <a href="?page={{ staffs.next_page_number }}">Next</a>
+    {% endif %}
+</div>
+
 <script>
     function redirectToEditPage(staffId) {
-        // Redirect to the edit page with the student ID
-        window.location.href = '/StaffProfileUpdate/' + staffId+'/';
+        window.location.href = '/StaffProfileUpdate/' + staffId + '/';
     }
   
     function redirectToDeletePage(staffId) {
-        // Redirect to the delete page with the student ID
-        window.location.href = '/delete/'+staffId+'/';
+        window.location.href = '/delete/' + staffId + '/';
     }
   
     function redirectToViewPage(staffId) {
-        // Redirect to the view page with the student ID
-        window.location.href = '/StaffProfile/'+ staffId+'/';
+        window.location.href = '/StaffProfile/' + staffId + '/';
     }
-    function redirectToAddPage(staffId) {
-        // Redirect to the view page with the student ID
+    
+    function redirectToAddPage() {
         window.location.href = '/StaffUpload/';
     }
-  </script>
+
+    function searchStaff() {
+        var input = document.getElementById("searchInput").value.toLowerCase();
+        var rows = document.getElementsByClassName("staff-row");
+
+        for (var i = 0; i < rows.length; i++) {
+            var name = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
+            if (name.indexOf(input) > -1) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+</script>
 
 {% endblock %}
-
-

@@ -1,58 +1,56 @@
+<!-- staff_dashboard.html -->
 {% extends "Adminuser/base.html" %}
 {% block title %}Student Dashboard{% endblock %}
-{%block content %}
-<!-- Student Dashboard -->
-{% load static %}
+{% block content %}
 <div class="glassmorphism">
     <!-- Main Content Area -->
-<!-- Main content area -->
-<div class="main">
-   <nav class="navbar navbar-light bg-light justify-content-between">
-       <a class="navbar-brand">Student Details</a>
-       <form class="form-inline">
-        <button type="button" class="btn btn-info" onclick="redirectToAddPage()">Add New Student </button>
-        &nbsp;
-         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-       </form>
-     </nav>
-   <table>
-    
-       <tr>
-           <th>ID</th>
-           <th>Name</th>
-           <th>Age</th>
-           <th>Grade</th>
-           <th>Actions</th>
-       </tr>
-       <!-- Sample data, you can replace this with actual data -->
-       {% for student in students %}
-       <tr>
-           <td>{{student.admission_no}}</td>
-           <td>{{student.name}}</td>
-           <td>{{student.section}}</td>
-           <td>{{student.class_name}}</td>
-           <td>
-               <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ student.id }}')">Edit</button>
-               <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ student.id }}')">Delete</button>
-               <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ student.id }}')">View</button>
-           </td>
-       </tr>
-       {% endfor %}
-       {% comment %} <tr>
-           <td>2</td>
-           <td>Jane Smith</td>
-           <td>17</td>
-           <td>11</td>
-           <td>
-               <button type="button" class="btn btn-primary">Edit</button>
-               <button type="button" class="btn btn-danger">Delete</button>
-               <button type="button" class="btn btn-info">View</button>
-           </td>
-       </tr> {% endcomment %}
-   </table>
+    <div class="main">
+       <nav class="navbar navbar-light bg-light justify-content-between">
+           <a class="navbar-brand">Student Details</a>
+           <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">Add New Student </button>
+            &nbsp;
+          <form class="form-inline">
+                 <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search Name" aria-label="Search">
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStudents()">Search</button>
+               </form>
+         </nav>
+       <table>
+           <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Age</th>
+               <th>Grade</th>
+               <th>Actions</th>
+           </tr>
+           <!-- Sample data, you can replace this with actual data -->
+           {% for student in students %}
+           <tr>
+               <td>{{student.admission_no}}</td>
+               <td>{{student.name}}</td>
+               <td>{{student.section}}</td>
+               <td>{{student.class_name}}</td>
+               <td>
+                   <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ student.id }}')">Edit</button>
+                   <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ student.id }}')">Delete</button>
+                   <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ student.id }}')">View</button>
+               </td>
+           </tr>
+           {% endfor %}
+           <!-- Add this div to hold the number widget -->
+       </table>
+    </div>
 </div>
+<!-- Pagination links -->
+<div class="pagination">
+    {% if students.has_previous %}
+        <a href="?page={{ students.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>Page {{ students.number }} of {{ students.paginator.num_pages }}</span>
+    {% if students.has_next %}
+        <a href="?page={{ students.next_page_number }}">Next</a>
+    {% endif %}
 </div>
+
 <script>
     function redirectToEditPage(studentId) {
         // Redirect to the edit page with the student ID
@@ -72,7 +70,25 @@
         // Redirect to the view page with the student ID
         window.location.href = '/StudentUpload';
     }
-  </script>
+
+    function searchStudents() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1]; // Change index to the column where the student name is located
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 {% endblock %}
-
-

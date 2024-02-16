@@ -20,6 +20,10 @@ body {
     position: relative;
     
 }
+/* border-radius: 43px;
+background: linear-gradient(145deg, #cacaca, #f0f0f0);
+box-shadow:  5px 5px 8px #747474,
+             -5px -5px 8px #ffffff; */
 
 .dropdown-menu {
     position: absolute;
@@ -156,4 +160,60 @@ main .navbar {
     border-radius: 20px;
     background: rgb(255, 255, 255);
    
+}
+
+
+
+
+/* Styles for the dark theme */
+.dark-theme {
+    background-color: #1e1e1e; /* Dark background color */
+    color: #ffffff; /* Light text color */
+}
+
+/* Update text color for specific elements */
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6,
+.dark-theme p, .dark-theme a, .dark-theme li, .dark-theme span, .dark-theme div ,p{
+    color: #ffffff; /* Light text color */
+}
+
+/* Update background color for specific elements
+.dark-theme a, .dark-theme li {
+    background-color: #333; /* Darker background color 
+}
+*/
+/* Update border color for input fields */
+.dark-theme input[type="text"], .dark-theme input[type="password"], .dark-theme input[type="email"] {
+    border-color: #ffffff; /* Light border color */
+}
+
+/* Update placeholder text color */
+.dark-theme ::placeholder {
+    color: #888; /* Lighter placeholder text color */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination span {
+    font-weight: bold;
 }

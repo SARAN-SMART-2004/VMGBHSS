@@ -1,10 +1,13 @@
 {% extends "Adminuser/base.html" %}
 
-{% block title %}New Registration{% endblock %}
-{%block content %}
-<!-- FEATURE -->
-{% load static %}
-       <style>
+{% block title %}
+    New Registration
+{% endblock %}
+
+{% block content %}
+    <!-- FEATURE -->
+    {% load static %}
+    <style>
         form {
             max-width: 600px;
             margin: 20px auto;
@@ -13,9 +16,11 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         label {
             font-weight: bold;
         }
+
         input[type="text"],
         input[type="date"],
         input[type="email"],
@@ -30,9 +35,11 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
         select {
             height: 35px;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -40,12 +47,12 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
     </style>
-</head>
-<body>
+
     <form method="post">
         {% csrf_token %}
         <div>
@@ -124,6 +131,4 @@
             <button type="submit">Submit</button>
         </div>
     </form>
-    
-
-    {% endblock %}
+{% endblock %}
