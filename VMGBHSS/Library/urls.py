@@ -5,7 +5,9 @@ from . import views
 
 urlpatterns = [
     path('BookDashboard',views.BookDashboard,name='BookDashboard'),
+    path('BookTransaction',views.BookTransaction,name='BookTransaction'),
     path('BookUpload', views.BookUpload, name='BookUpload'),
+    path('BookIssue', views.BookIssue, name='BookIssue'),
     path('BookProfile/<int:book_id>/',views.BookProfile,name='BookProfile'),
     path('BookProfileUpdate/<int:id>/',views.BookProfileUpdate,name='BookProfileUpdate'),
     path('BookDelete/<int:id>/',views.delete,name='BookDelete'),

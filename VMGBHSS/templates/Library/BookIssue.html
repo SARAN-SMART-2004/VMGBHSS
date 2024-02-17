@@ -1,0 +1,110 @@
+<!-- staff_dashboard.html -->
+{% extends "Adminuser/base.html" %}
+{% block title %}User Profile{% endblock %}
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+  <div class="container">
+        <h1>User Profile</h1>
+        <form method="post" id="studentForm"> <!-- Add method="post" to your form -->
+            {% csrf_token %} <!-- Add CSRF token for security -->
+            <label for="studentId"><strong>Student ID:</strong></label>
+            <input type="text" id="studentId" name="studentId">
+            <input type="submit" value="Submit">
+        </form>
+        <!-- Display profile info only if student data is available -->
+        {% if student %}
+            <div class="profile-info">
+                <p><strong>Name:</strong> {{ student.name }} </p>
+                <p><strong>Roll No:</strong> {{ student.roll_number }}</p>
+                <p><strong>Class:</strong> {{ student.class_name }}</p>
+                <p><strong>Section:</strong> {{ student.section }}</p>
+                <p><strong>Category:</strong> {{ student.category }}</p>
+            </div>
+       
+        <!-- Your table and button container remain unchanged -->
+    </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Account No</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>123456</td>
+                    <td>Book Title 1</td>
+                    <td>Author 1</td>
+                    <td>2024-03-01</td>
+                </tr>
+                <tr>
+                    <td>789012</td>
+                    <td>Book Title 2</td>
+                    <td>Author 2</td>
+                    <td>2024-03-10</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button class="btn">Save</button>
+            <button class="btn">Renew</button>
+            <button class="btn">Cancel</button>
+        </div>
+  
+
+    {% endif %}
+    {% endblock %}

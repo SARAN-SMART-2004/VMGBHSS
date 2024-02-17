@@ -62,8 +62,6 @@
     width: auto;
 }
 </style>
-
-
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
@@ -105,8 +103,80 @@
                             </div>
                         </div>
                         <hr>
+                        
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Publish Year</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_publish_year }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book No</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_no }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book Edition</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_edition }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book Publisher</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_publisher }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book Prize</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_prize }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book Language</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_language }}
+                            </div>
+                        </div>
+                        <hr>
+                    
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Book ISBN No.</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ book.book_isbnno }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ book.id }}')">Edit Book</button>
+                            </div>
                         </div>
                         </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                         
                         
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

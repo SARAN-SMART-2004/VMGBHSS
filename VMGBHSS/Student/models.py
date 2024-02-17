@@ -33,7 +33,10 @@ class StudentDetails(models.Model):
         ('O', 'Other')
     )
     gender = models.CharField(max_length=1, choices=gender_choices)
-
+    roll_number=models.IntegerField(null=True)
+    category=models.CharField(max_length=20,null=True)
+    
+    
     # Define string representation of the model
     def __str__(self):
         return self.name
