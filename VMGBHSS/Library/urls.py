@@ -1,14 +1,16 @@
+
+# Importing required libraries
 from django.urls import path
 from . import views
 
 
-
+# Url patterns for Books app module of Library Management System
 urlpatterns = [
-    path('BookDashboard',views.BookDashboard,name='BookDashboard'),
-    path('BookTransaction',views.BookTransaction,name='BookTransaction'),
-    path('BookUpload', views.BookUpload, name='BookUpload'),
-    path('BookIssue', views.BookIssue, name='BookIssue'),
-    path('BookProfile/<int:book_id>/',views.BookProfile,name='BookProfile'),
-    path('BookProfileUpdate/<int:id>/',views.BookProfileUpdate,name='BookProfileUpdate'),
-    path('BookDelete/<int:id>/',views.delete,name='BookDelete'),
+    path('bookhome',views.home,name='bookhome'),
+    path('issue',views.issue,name='issue'),
+    path('booklogin',views.login,name='booklogin'),
+    path('bookregister',views.register,name='bookregister'),
+    path('booklogout',views.logout,name='booklogout'),
+    path('return_item',views.return_item,name='return_item'),
+    path('history',views.history,name='history'),
 ]

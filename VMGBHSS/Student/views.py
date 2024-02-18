@@ -27,12 +27,11 @@ def login(request):
             # Show an error message
             return render(request, 'Student/login.html', {'error': 'Invalid credentials'})
     return render(request, 'Student/login.html')
-
 def StudentDashboard(request):
-     #  # Retrieve student details from the database
-    students = StudentDetails.objects.all()
-    #Pass the data
-      # Paginate the queryset
+    # Retrieve student details from the database and order them
+    students = StudentDetails.objects.order_by('name')
+
+    # Paginate the queryset
     paginator = Paginator(students, 10)  # Show 10 students per page
     page_number = request.GET.get('page')
     try:
@@ -43,7 +42,8 @@ def StudentDashboard(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         students = paginator.page(paginator.num_pages)
-    return render(request,'Student/StudentDashboard.html', {'students': students})
+    return render(request, 'Student/StudentDashboard.html', {'students': students})
+
 def StudentProfile(request, student_id):
     #  # Retrieve student details from the database
     student = get_object_or_404(StudentDetails, pk=student_id)
@@ -96,17 +96,20 @@ def StudentProfileUpdate(request,id):
         messages.error(request, "Failed to update. Please check the form.")
         form = StudentDetailsForm(instance=student)
     return render(request,'Student/StudentProfileUpdate.html',{'form': form,'student':student})
+from .forms import StudentDetailsForm
 
 def StudentUpload(request):
     if request.method == 'POST':
         form = StudentDetailsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('StudentDashboard')  # Redirect to a success page after successful submission
+            return redirect('StudentDashboard')
     else:
         form = StudentDetailsForm()
-        redirect('home')
+    
     return render(request, 'Student/StudentUpload.html', {'form': form})
+
+
 def delete(request,id):
     Student=StudentDetails.objects.get(id=id)
     Student.delete()

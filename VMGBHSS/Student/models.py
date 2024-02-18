@@ -16,7 +16,7 @@ class StudentDetails(models.Model):
     phone = models.CharField(max_length=15)
     class_name = models.CharField(max_length=20)
     section = models.CharField(max_length=10)
-    blood_group = models.CharField(max_length=5)
+    blood_group = models.CharField(max_length=20)
     father_name = models.CharField(max_length=100)
     caste = models.CharField(max_length=50)
     email = models.EmailField()
@@ -28,7 +28,7 @@ class StudentDetails(models.Model):
     emis_no = models.CharField(max_length=20)
     admission_no = models.CharField(max_length=20)
     gender_choices = (
-        ('M', 'Male'),
+        ('M', 'Male'), 
         ('F', 'Female'),
         ('O', 'Other')
     )

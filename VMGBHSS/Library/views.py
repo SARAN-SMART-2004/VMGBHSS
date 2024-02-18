@@ -1,115 +1,174 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BookDetailsForm
+
+# Importing required libraries
+from django.shortcuts import redirect, render
+from .models import Book, IssuedItem
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import BookDetails
-from Student.models import StudentDetails
+from django.contrib.auth.models import auth, User
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from datetime import date
+from django.core.paginator import Paginator
 
-# Create your views here.
-def BookDashboard(request):
-     #  # Retrieve book details from the database
-    books = BookDetails.objects.all()
-    #Pass the data
-      # Paginate the queryset
-    paginator = Paginator(books, 10)  # Show 10 books per page
+
+# ----------------- Library Management System Views -----------------
+
+# Home view
+def home(request):
+    return render(request,'Library/home.html')
+
+# Login view to login user
+def login(request):
+
+    # If request is post then get username and password from request
+    if(request.method == 'POST'):
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Authenticate user
+        user = auth.authenticate(username=username,password=password)
+
+        # If user is authenticated then login user
+        if(user is not None):
+            auth.login(request,user)
+
+            # Redirect to home page
+            return redirect('/bookhome')
+        else:
+
+            # If user is not authenticated then show error message
+            # and redirect to login page
+            messages.info(request,'Invalid Credential')
+            return redirect('booklogin')
+    else:
+
+        # If request is not post then render login page
+        return render(request,'Library/login.html')
+
+
+# Register view to register user
+def register(request):
+
+    # If request is post then get user details from request
+    if(request.method == 'POST'):
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        # Check if password and confirm password matches
+        if(password1 == password2):
+
+            # Check if username or email already exists
+            if(User.objects.filter(username=username).exists()):
+                messages.info(request,'Username already exist')
+                return redirect('bookregister')
+            
+            # Check if email already exists
+            elif(User.objects.filter(email=email).exists()):
+                messages.info(request,'Email already registered')
+                return redirect('bookregister')
+            
+            # If username and email does not exists then create user
+            else:
+
+                # Create user
+                user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password1)
+                
+                # Save user
+                user.save()
+
+                # Redirect to login page
+                return redirect('booklogin')
+        else:
+
+            # If password and confirm password does not matches then show error message
+            messages.info(request,'Password not matches')
+            return redirect('bookregister')
+    else:
+
+        # If request is not post then render register page
+        return render(request,'Library/register.html')
+
+
+# Logout view to logout user
+def logout(request):
+
+    # Logout user and redirect to home page
+    auth.logout(request)
+    return redirect('bookhome')
+
+
+# Issue view to issue book to user
+@login_required(login_url='login')
+def issue(request):
+
+    # If request is post then get book id from request
+    if(request.method == 'POST'):
+        book_id = request.POST['book_id']
+        current_book = Book.objects.get(id=book_id)
+        book = Book.objects.filter(id=book_id)
+        issue_item = IssuedItem.objects.create(user_id=request.user,book_id=current_book)
+        issue_item.save()
+        book.update(quantity = book[0].quantity-1)
+
+        # Show success message and redirect to issue page
+        messages.success(request, 'Book issued successfully.')
+
+    # Get all books which are not issued to user
+    my_items = IssuedItem.objects.filter(user_id = request.user,return_date__isnull=True).values_list('book_id')
+    books = Book.objects.exclude(id__in=my_items).filter(quantity__gt=0)
+
+    # Return issue page with books that are not issued to user
+    return render(request,'Library/issue_item.html',{'books':books})
+
+# History view to show history of issued books to user
+@login_required(login_url='booklogin')
+def history(request):
+
+    # Get all issued books to user
+    my_items = IssuedItem.objects.filter(user_id=request.user).order_by('-issue_date')
+
+    # Paginate data
+    paginator = Paginator(my_items,10) 
+
+    # Get page number from request
     page_number = request.GET.get('page')
-    try:
-        books = paginator.page(page_number)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        books = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        books = paginator.page(paginator.num_pages)
-    return render(request,'Library/BookDashboard.html',{'books':books})
+    show_data_final = paginator.get_page(page_number)
+
+    # Return history page with issued books to user
+    return render(request,'Library/history.html',{'books':show_data_final})
 
 
+# Return view to return book to library
+@login_required(login_url='booklogin')
+def return_item(request):
 
-def BookProfile(request, book_id):
-    #  # Retrieve book details from the database
-    book = get_object_or_404(BookDetails, pk=book_id)
-    #Pass the data
-    return render(request,'Library/BookProfile.html', {'book': book})
+    # If request is post then get book id from request
+    if(request.method == 'POST'):
 
+        # Get book id from request
+        book_id = request.POST['book_id']
 
+        # Get book object
+        current_book = Book.objects.get(id=book_id)
 
-def BookProfileUpdate(request,id):
-    book=BookDetails.objects.get(id=id)
-    if request.POST:
-        book_id=request.POST['book_id']
-        book_name =request.POST['book_name']
-        book_author = request.POST['book_author']
-        book_description = request.POST['book_description']
-        book_no=request.POST['book_no']
-        book_edition=request.POST['book_edition']
-        book_publisher=request.POST['book_publisher']
-        book_prize=request.POST['book_prize']
-        book_language=request.POST['book_language']
-        book_isbnno=request.POST['book_isbnno']
-        book_publish_year=request.POST['book_publish_year']
-        book.book_id= book_id 
-        book.book_name= book_name 
-        book.book_author = book_author 
-        book.book_description = book_description 
-        book.book_no=book_no
-        book.book_edition=book_edition
-        book.book_publisher=book_publisher
-        book.book_prize=book_prize
-        book.book_language=book_language
-        book.book_isbnno=book_isbnno
-        book.book_publish_year=book_publish_year
+        # Update book quantity
+        book = Book.objects.filter(id=book_id)
+        book.update(quantity = book[0].quantity+1)
 
-        book.save()
-        return redirect('BookDashboard')
-    else:
-        messages.error(request, "Failed to update. Please check the form.")
-        form = BookDetailsForm(instance=book)
-    return render(request,'Library/BookProfileUpdate.html',{'form': form,'book':book})
+        # Update return date of book and show success message
+        issue_item = IssuedItem.objects.filter(user_id=request.user,book_id=current_book,return_date__isnull=True)
+        issue_item.update(return_date=date.today())
+        messages.success(request, 'Book returned successfully.')
 
-def BookUpload(request):
-    if request.method == 'POST':
-        form = BookDetailsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('BookDashboard')  # Redirect to a success page after successful submission
-    else:
-        form = BookDetailsForm()
-        redirect('home')
-    return render(request, 'Library/BookUpload.html', {'form': form})
-def delete(request,id):
-    book=BookDetails.objects.get(id=id)
-    book.delete()
-    messages.error(request,"Delete Successfully")
-    return redirect("BookDashboard")
+    # Get all books which are issued to user
+    my_items = IssuedItem.objects.filter(user_id = request.user,return_date__isnull=True).values_list('book_id')
+    
+    # Get all books which are not issued to user
+    books = Book.objects.exclude(~Q(id__in=my_items))
 
-
-        
-# Create your views here.
-def BookTransaction(request):
-     #  # Retrieve book details from the database
-    books = BookDetails.objects.all()
-    #Pass the data
-      # Paginate the queryset
-    paginator = Paginator(books, 10)  # Show 10 books per page
-    page_number = request.GET.get('page')
-    try:
-        books = paginator.page(page_number)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        books = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        books = paginator.page(paginator.num_pages)
-    return render(request,'Library/BookTransaction.html',{'books':books})
-
-
-
-def BookIssue(request):
-    if request.method == 'POST':
-        student_id = request.POST.get('studentId')
-        # Assuming you have a Student model with appropriate fields
-        student = StudentDetails.objects.get(roll_number=student_id)
-        return render(request,'Library/BookIssue.html',{'student':student})
-    else:
-        # If it's not a POST request, render the form
-        return render(request,'Library/BookIssue.html')
+    # Return return page with books that are issued to user
+    params = {'books':books}
+    return render(request,'Library/return_item.html',params)
