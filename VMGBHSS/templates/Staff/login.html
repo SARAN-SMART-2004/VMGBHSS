@@ -97,9 +97,16 @@
       <div class="forgot-password"><a href="#">Forgot Password</a></div>
       <button type="submit">Login</button>
   </form>  
-        <p>login as student <a href="studentlogin">login</a> or login as Admin <a href="login">Login</a></p>
+        <p>login as student <a  href="#" onclick="routeToPage(event, 'studentlogin')">login</a> or login as Admin <a  href="#" onclick="routeToPage(event, 'login')">Login</a></p>
       </div>
     </div>
-  
+  <script>
+    function routeToPage(event, page) {
+      event.preventDefault(); // Prevent default behavior of link click
+      window.location.href = '/' + page; // Redirect to the desired page
+  }
+
+  </script>
 </body>
+
 </html>

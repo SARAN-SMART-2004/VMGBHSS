@@ -3,52 +3,57 @@
 {% block title %}Student Dashboard{% endblock %}
 {% block content %}
 <div class="glassmorphism">
-    <!-- Main Content Area -->
-    <div class="main">
-       <nav class="navbar navbar-light bg-light justify-content-between">
-           <a class="navbar-brand">Student Details</a>
-           <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">Add New Student </button>
-            &nbsp;
-          <form class="form-inline">
-                 <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search Name" aria-label="Search">
-                 <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStudents()">Search</button>
-               </form>
-         </nav>
-       <table>
-           <tr>
-               <th>ID</th>
-               <th>Name</th>
-               <th>Age</th>
-               <th>Grade</th>
-               <th>Actions</th>
-           </tr>
-           <!-- Sample data, you can replace this with actual data -->
-           {% for student in students %}
-           <tr>
-               <td>{{student.admission_no}}</td>
-               <td>{{student.name}}</td>
-               <td>{{student.section}}</td>
-               <td>{{student.class_name}}</td>
-               <td>
-                   <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ student.id }}')">Edit</button>
-                   <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ student.id }}')">Delete</button>
-                   <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ student.id }}')">View</button>
-               </td>
-           </tr>
-           {% endfor %}
-           <!-- Add this div to hold the number widget -->
-       </table>
+   <!-- Main Content Area -->
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Student Details</a>
+        <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">Add New</button>
+        <form class="form-inline">
+            <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search Name" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStudents()">Search</button>
+        </form>
+    </nav>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample data, you can replace this with actual data -->
+                {% for student in students %}
+                <tr>
+                    <td>{{student.admission_no}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.section}}</td>
+                    <td>{{student.class_name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ student.id }}')">Edit</button>
+                        <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ student.id }}')">Delete</button>
+                        <button type="button" class="btn btn-info" onclick="redirectToViewPage('{{ student.id }}')">View</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 <!-- Pagination links -->
-<div class="pagination">
+<div class="container-fluid pagination justify-content-center">
     {% if students.has_previous %}
-        <a href="?page={{ students.previous_page_number }}">Previous</a>
+    <a href="?page={{ students.previous_page_number }}" class="btn btn-link">Previous</a>
     {% endif %}
-    <span>Page {{ students.number }} of {{ students.paginator.num_pages }}</span>
+    <span class="mx-3">Page {{ students.number }} of {{ students.paginator.num_pages }}</span>
     {% if students.has_next %}
-        <a href="?page={{ students.next_page_number }}">Next</a>
+    <a href="?page={{ students.next_page_number }}" class="btn btn-link">Next</a>
     {% endif %}
+</div>
+
 </div>
 
 <script>

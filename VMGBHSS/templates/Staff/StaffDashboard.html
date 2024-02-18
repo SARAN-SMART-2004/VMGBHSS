@@ -4,53 +4,54 @@
 {% block content %}
 <div class="glassmorphism">
     <!-- Main Content Area -->
-    <div class="main">
-       <nav class="navbar navbar-light bg-light justify-content-between">
-           <a class="navbar-brand">Staff Details</a>
-           <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">ADD</button>
-           &nbsp;
-           <form class="form-inline">
-             <input id="searchInput" class="form-control mr-sm-2" type="search"  placeholder="Search Name" aria-label="Search">
-             <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStaff()">Search</button>
-           </form>
-         </nav>
-       <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-        {% for staff in staffs %}
-        <tr class="staff-row">
-            <td>{{ staff.id }}</td>
-            <td>{{ staff.name }}</td>
-            <td>{{ staff.phone }}</td>
-            <td>{{ staff.email }}</td>
-            <td>
-                <button type="button" class="btn btn-primary" onclick="redirectToEditPage('{{ staff.id }}')">Edit</button>
-                <button type="button" class="btn btn-danger" onclick="redirectToDeletePage('{{ staff.id }}')">Delete</button>
-                <button type="button" class="btn btn-info"  onclick="redirectToViewPage('{{ staff.id }}')">View</button>
-            </td>
-        </tr>
-        {% endfor %}
-       </table>
-      
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand">Staff Details</a>
+            <button type="button" class="btn btn-success my-2 my-sm-0" onclick="redirectToAddPage()">ADD</button>
+            <form class="form-inline">
+                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search Name" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchStaff()">Search</button>
+            </form>
+        </nav>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for staff in staffs %}
+                    <tr class="staff-row">
+                        <td>{{ staff.id }}</td>
+                        <td>{{ staff.name }}</td>
+                        <td>{{ staff.phone }}</td>
+                        <td>{{ staff.email }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="redirectToEditPage('{{ staff.id }}')">Edit</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="redirectToDeletePage('{{ staff.id }}')">Delete</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="redirectToViewPage('{{ staff.id }}')">View</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
- <!-- Pagination links -->
- <div class="pagination">
-    {% if staffs.has_previous %}
-        <a href="?page={{ staffs.previous_page_number }}">Previous</a>
-    {% endif %}
-
-    <span>Page {{ staffs.number }} of {{ staffs.paginator.num_pages }}</span>
-
-    {% if staffs.has_next %}
-        <a href="?page={{ staffs.next_page_number }}">Next</a>
-    {% endif %}
+    <div class="container-fluid pagination justify-content-center">
+        {% if staffs.has_previous %}
+        <a href="?page={{ staffs.previous_page_number }}" class="btn btn-link">Previous</a>
+        {% endif %}
+        <span class="mx-3">Page {{ staffs.number }} of {{ staffs.paginator.num_pages }}</span>
+        {% if staffs.has_next %}
+        <a href="?page={{ staffs.next_page_number }}" class="btn btn-link">Next</a>
+        {% endif %}
+    </div>
+    
 </div>
 
 <script>

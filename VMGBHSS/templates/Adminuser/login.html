@@ -99,7 +99,7 @@
     </form>  
 
         
-        <p>login as staff <a href="stafflogin">login</a> or login as Student <a href="studentlogin">Login</a></p>
+    <p>login as Staff <a  href="#" onclick="routeToPage(event, 'stafflogin')">login</a> or login as Student <a  href="#" onclick="routeToPage(event, 'studentlogin')">Login</a></p>
       </div> 
       
       
@@ -107,5 +107,12 @@
       
     </div>
   </div>
+  <script>
+    function routeToPage(event, page) {
+      event.preventDefault(); // Prevent default behavior of link click
+      window.location.href = '/' + page; // Redirect to the desired page
+  }
+
+  </script>
 </body>
 </html>

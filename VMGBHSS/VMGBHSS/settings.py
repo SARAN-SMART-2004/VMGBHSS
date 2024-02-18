@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'VMGBHSS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'db',
+        'NAME':'schooldb',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
