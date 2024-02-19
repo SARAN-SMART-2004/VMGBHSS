@@ -117,9 +117,13 @@
                 </ul>
             </div>
         </div>
+
         <div class="col-md-8">
             <div class="card mb-3">
                 <div class="card-body">
+                    {% if error %}
+      <p>{{ error }}</p>
+      {% endif %}
                     <div class="row">
                         <div class="col-sm-3">
                             <h6 class="mb-0">Name</h6>
@@ -134,8 +138,9 @@
                             <h6 class="mb-0">DOB</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type="text" class="text-secondary" value="{{ student.dob }}" name="dob">
+                            <input type="text" class="text-secondary" value="{{ student.dob|date:'Y/m/d' }}" name="dob">
                         </div>
+                        
                     </div>
                     <hr>
                     <div class="row">
@@ -278,14 +283,11 @@
                             <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
-                    </div>
-                    
-                    
+                    </div>  
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

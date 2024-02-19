@@ -1,16 +1,42 @@
 {% extends "Adminuser/base.html" %}
 {% block title %}Sign-up{% endblock %}
-{%block content %}
-
+{% block content %}
 {% load static %}
 
-    <h2>Signup</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Signup</button>
-    </form>
+<style>
+    /* CSS styles for mobile responsiveness */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Adjust input box sizing */
+    }
 
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+</style>
 
+<h2>Signup</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Signup</button>
+</form>
 {% endblock %}

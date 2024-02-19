@@ -167,7 +167,7 @@
                             <h6 class="mb-0">DOB</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type="text" class="text-secondary" value="{{ staff.dob }}" name="dob">
+                            <input type="text" class="text-secondary" value="{{ staff.dob|date:'Y/m/d'}}" name="dob">
                         </div>
                     </div>
                     <hr>

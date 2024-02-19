@@ -42,3 +42,6 @@ def login(request):
     return render(request, 'Adminuser/login.html')
 def about(request):
     return render(request,'Adminuser/about.html')
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)

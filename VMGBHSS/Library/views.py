@@ -7,6 +7,7 @@ from django.contrib.auth.models import auth, User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from .forms import BookForm
 from django.core.paginator import Paginator
 
 
@@ -172,3 +173,15 @@ def return_item(request):
     # Return return page with books that are issued to user
     params = {'books':books}
     return render(request,'Library/return_item.html',params)
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('bookhome')  # Define this URL later
+    else:
+        form = BookForm()
+    return render(request, 'Library/add_book.html', {'form': form})
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)

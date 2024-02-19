@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
-
-
+from django.conf.urls import handler404
+from .views import custom_404_view
 
 urlpatterns = [
     path('StudentSignup',views.signup,name='signup'),
@@ -12,3 +12,4 @@ urlpatterns = [
     path('StudentProfileUpdate/<int:id>/',views.StudentProfileUpdate,name='StudentProfileUpdate'),
     path('StudentDelete/<int:id>/',views.delete,name='StudentDelete'),
 ]
+handler404 = custom_404_view

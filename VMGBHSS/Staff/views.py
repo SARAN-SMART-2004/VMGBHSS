@@ -3,8 +3,7 @@ from .forms import SignUpForm,StaffDetailsForm
 from .models import StaffUser,StaffDetails
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-
+from datetime import datetime
 def StaffDashboard(request):
     staffs = StaffDetails.objects.all()
     #Pass the data
@@ -45,11 +44,19 @@ def StaffProfileUpdate(request, id):
         nationality = request.POST['nationality']
         gender = request.POST['gender']
         image = request.POST['image']
+        dob_str = request.POST.get('dob')
+
+        # Convert the string to a datetime object
+        dob_datetime = datetime.strptime(dob_str, '%Y/%m/%d')
+
+        # Format the datetime object as yyyy-mm-dd
+        dob_formatted = dob_datetime.strftime('%Y-%m-%d')
+
         
         
         staff.name= name
         staff.phone = phone
-        staff.dob = dob
+        staff.dob =dob_formatted
         staff.age=  age
         staff.email = email
         staff.qualification =  qualification
@@ -77,7 +84,7 @@ def StaffUpload(request):
         form = StaffDetailsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Redirect to a success page after successful submission
+            return redirect('')  # Redirect to a success page after successful submission
     else: 
         form = StaffDetailsForm()
     return render(request, 'Staff/StaffUpload.html', {'form': form})
@@ -109,3 +116,6 @@ def delete(request,id):
     data.delete()
     messages.error(request,"Delete Successfully")
     return redirect("StaffDashboard")
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)

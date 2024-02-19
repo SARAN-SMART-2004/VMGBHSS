@@ -34,29 +34,32 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="booklogin">Login</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'booklogin')">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="bookregister">Register</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'bookregister')">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="home">Goto School</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, '')">Goto School</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/bookhome">Home</a>
+                        <a class="nav-link"href="#" onclick="routeToPage(event, 'bookhome')">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="issue">Issue</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'addbook')">Add Book</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="return_item">Return</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'issue')">Issue</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="history">History</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'return_item')">Return</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="booklogout">Logout</a>
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'history')">History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="routeToPage(event, 'booklogout')">Logout</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -72,6 +75,12 @@
     {% block content %}
 
     {% endblock %}
+    <script>
+        function routeToPage(event, page) {
+            event.preventDefault(); // Prevent default behavior of link click
+            window.location.href = '/' + page; // Redirect to the desired page
+        }
+    </script>
 </body>
 
 </html>

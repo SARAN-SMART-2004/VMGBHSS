@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignUpForm,StudentDetailsForm
 from django.contrib import messages
+from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import StudentUser,StudentDetails
 
@@ -22,7 +23,7 @@ def login(request):
         user = StudentUser.objects.filter(username=username, password=password).first()
         if user:
             # Redirect to some page on successful login
-            return redirect('home')
+            return redirect('')
         else:
             # Show an error message
             return render(request, 'Student/login.html', {'error': 'Invalid credentials'})
@@ -72,9 +73,17 @@ def StudentProfileUpdate(request,id):
         emis_no =request.POST['emis_no']
         admission_no =request.POST['admission_no']
         gender =request.POST['gender']
+        dob_str = request.POST.get('dob')
+
+        # Convert the string to a datetime object
+        dob_datetime = datetime.strptime(dob_str, '%Y/%m/%d')
+
+        # Format the datetime object as yyyy-mm-dd
+        dob_formatted = dob_datetime.strftime('%Y-%m-%d')
+
 
         student.name= name 
-        student.dob= dob 
+        student.dob= dob_formatted 
         student.phone = phone 
         student.class_name = class_name 
         student.section = section 
@@ -115,6 +124,10 @@ def delete(request,id):
     Student.delete()
     messages.error(request,"Delete Successfully")
     return redirect("StudentDashboard")
+
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
 
 
         
